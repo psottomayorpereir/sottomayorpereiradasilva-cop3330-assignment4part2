@@ -31,4 +31,8 @@ public class TodoLists {
         this.lists.add(list);
     }
 
+    public void removeList(TodoList list){
+        this.lists.remove(list);
+    }
+
 }

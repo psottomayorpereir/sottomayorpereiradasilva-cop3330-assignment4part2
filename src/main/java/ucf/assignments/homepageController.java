@@ -55,6 +55,9 @@ public class homepageController implements Initializable{
     @FXML private TextField descriptionTxtField;
     @FXML private DatePicker dp;
 
+    //variables for delete list
+    @FXML private Label deleteListLabel;
+
     ///////////////////////////////////////////////
     //configure the Todo List table
     @FXML private TableView<TodoList> tableView;
@@ -79,6 +82,21 @@ public class homepageController implements Initializable{
         obsList.add(list);
         //print the label
         this.addListLabel.setText(listNameTxtField.getText() + " Todo List created");
+    }
+
+    //Method to remove a 'Todo List'
+    public void deleteListButtonClick(){
+        selected = tableView.getSelectionModel().getSelectedItem();
+        if(selected==null){
+            //no list selected to delete
+            deleteListLabel.setText("No list selected to delete");
+        }
+        else{
+            //list selected to delete
+            int index = obsList.indexOf(selected);
+            obsList.remove(index);
+            listOfTodoList.removeList(selected);
+        }
     }
 
     //Method for 'Add an item to a Todo List'
@@ -187,6 +205,9 @@ public class homepageController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        //Delete list label
+        deleteListLabel.setText("");
 
         //Configuring the 'Add a Todo List'
         addListLabel.setText("");

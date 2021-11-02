@@ -54,5 +54,7 @@ __Constructor__
 +public void addList(TodoList list)
 ..Getters..
 +public ObservableList<TodoList> getLists()
+..Other Methods..
++public void removeList(TodoList list)
 }
 @enduml

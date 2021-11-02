@@ -118,8 +118,9 @@
         </columns>
       </TableView>
       <Button layoutX="491.0" layoutY="536.0" mnemonicParsing="false" text="Delete Item" />
-      <Button layoutX="70.0" layoutY="536.0" mnemonicParsing="false" text="Delete List" />
+      <Button layoutX="70.0" layoutY="536.0" mnemonicParsing="false" onAction="#deleteListButtonClick" text="Delete List" />
       <Button layoutX="594.0" layoutY="536.0" mnemonicParsing="false" text="Display Completed Items" />
       <Button layoutX="305.0" layoutY="536.0" mnemonicParsing="false" text="Display Incompleted Items" />
+      <Label fx:id="deleteListLabel" layoutX="92.0" layoutY="565.0" text="Label" />
    </children>
 </AnchorPane>
