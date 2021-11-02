@@ -76,7 +76,6 @@
          </children>
       </VBox>
       <Separator layoutX="181.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="308.0" prefWidth="24.0" />
-      <Button layoutX="743.0" layoutY="561.0" mnemonicParsing="false" onAction="#changeScreenButtonClick" prefHeight="24.0" prefWidth="52.0" text="Go to Table View" />
       <VBox layoutX="507.0" layoutY="90.0" prefHeight="200.0" prefWidth="254.0" spacing="2.0">
          <children>
             <Button mnemonicParsing="false" onAction="#addItemButtonClick" text="Add item" />

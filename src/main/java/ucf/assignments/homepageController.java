@@ -74,8 +74,8 @@ public class homepageController implements Initializable{
     ObservableList<Item> obsListItem = FXCollections.observableArrayList();
 
 
-    //Method for 'Add a Todo List'
     public void addListButtonClick(){
+        //method to 'Add a Todo List'
         //Set the name of the list
         list.setName(listNameTxtField.getText());
         //add the list to the obsList
@@ -84,8 +84,8 @@ public class homepageController implements Initializable{
         this.addListLabel.setText(listNameTxtField.getText() + " Todo List created");
     }
 
-    //Method to remove a 'Todo List'
     public void deleteListButtonClick(){
+        //method to allow the user to delete a Todo List
         selected = tableView.getSelectionModel().getSelectedItem();
         if(selected==null){
             //no list selected to delete
@@ -96,11 +96,13 @@ public class homepageController implements Initializable{
             int index = obsList.indexOf(selected);
             obsList.remove(index);
             listOfTodoList.removeList(selected);
+            deleteListLabel.setText("Todo List deleted");
         }
     }
 
     //Method for 'Add an item to a Todo List'
     public void addItemButtonClick(){
+        //method to allow the user to add an item to a Todo List
         if(obsList.isEmpty() || tableView.getSelectionModel().getSelectedItem()==null){
             //there is no list to add Item to
             this.addItemTitleLabel.setText("");
@@ -169,42 +171,65 @@ public class homepageController implements Initializable{
         }
     }
 
-    //Method to change the scene to TableView
-    public void changeScreenButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/ucf.assignments/TableView.fxml"));
-        Parent tableViewParent= loader.load();
-        Scene tableViewScene = new Scene(tableViewParent);
-        //Get the Stage information
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        TableViewController controller = loader.getController();
-        controller.getDataHomePage(controller.lists);
-        window.setScene(tableViewScene);
-        window.show();
+    public void deleteItemButtonClick(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to delete an item of a Todo List in the TableView
     }
 
-    //Method to display items of a selected Todo List
-    public void selectTodoListClick(){
-        TodoList selected = tableView.getSelectionModel().getSelectedItem();
-        String selectedName = selected.getName();
-        var size=obsList.indexOf(selectedName);
-
-    }
-
-    ///////////////////////////////////
-
-    //Method to allow the user to double click on a cell of the TableView and update the name of the Todo List
     public void changeTodoListNameCellEvent(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to double click on a cell of the TableView and update the name of the Todo List
         if (tableView.getSelectionModel().getSelectedItem() != null) {
             TodoList listSelected = tableView.getSelectionModel().getSelectedItem();
             listSelected.setName(edittedCell.getNewValue().toString());
         }
     }
 
-    ///////////////////////////////////
+    public void changeItemNameCellEvent(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to double click on a cell of the TableView and update the title of an item
+    }
+
+    public void changeItemDescriptionCellEvent(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to double click on a cell of the TableView and update description
+    }
+
+    public void changeItemDueDateCellEvent(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to double click on a cell of the TableView and update dueDate
+    }
+
+    public void changeItemStatusCellEvent(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to double click on a cell of the TableView and update the status of the item
+    }
+
+    public void displayAllItemsInTodoList(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to see all items in a Todo List on the TableView
+    }
+
+    public void displayCompleteItemsInTodoList(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to see all complete items in a Todo List on the TableView
+    }
+
+    public void displayIncompleteItemsInTodoList(TableColumn.CellEditEvent edittedCell){
+        //Method to allow the user to see all incomplete items in a Todo List on the TableView
+    }
+
+    public void saveToExternalButtonClick(){
+        //Method to allow the user to save a Todo List to external storage
+    }
+
+    public void saveMultipleToExternalButtonClick(){
+        //Method to allow the user to save multiple Todo Lists to external storage
+    }
+
+    public void loadFromExternalButtonClick(){
+        //Method to allow the user to load a Todo List from external storage
+    }
+
+    public void loadMultipleFromExternalButtonClick(){
+        //Method to allow the user to load multiple Todo Lists from external storage
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //method to initialize table views, labels, etc
 
         //Delete list label
         deleteListLabel.setText("");
