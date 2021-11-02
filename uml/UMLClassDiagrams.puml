@@ -1,0 +1,58 @@
+@startuml
+class Item{
+__private data__
+SimpleStringProperty name;
+SimpleStringProperty description;
+SimpleStringProperty status;
+LocalDate dueDate;
+__Constructor__
++public Item(String name, String description, String status, LocalDate dueDate)
+..Setters..
++public void setName(String name)
++public void setDescription(String description)
++public void setStatus(String status)
++public void setDueDate(LocalDate dueDate)
+..Getters..
++public String getName()
++public String getDescription()
++public String getStatus()
++public LocalDate getDueDate()
+}
+
+TodoList *-- Item
+
+class TodoList{
+__private data__
+static TodoList instance = new TodoList();
+SimpleStringProperty name;
+ObservableList<Item> items;
+DateTimeFormatter formatter;
+static String filename = "TodoListItems.txt";
+__Constructor__
++public TodoList(String name, ObservableList<Item> items, DateTimeFormatter formatter)
+..Setters..
++public void addItem(Item item)
++public void setName(String name)
+..Getters..
++public ObservableList<Item> getItems()
++public String getName()
+..Other Methods..
++public static TodoList getInstance()
++private TodoList()
++public void loadItems() throws IOException
++public void storeItems() throws IOException
+}
+
+TodoLists *-- TodoList
+
+class TodoLists{
+__private data__
+ObservableList<TodoList> lists
+__Constructor__
++public TodoLists()
+..Setters..
++public void addList(TodoList list)
+..Getters..
++public ObservableList<TodoList> getLists()
+}
+@enduml
