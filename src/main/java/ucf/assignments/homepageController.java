@@ -88,26 +88,40 @@ public class homepageController implements Initializable{
             this.addItemTitleLabel.setText("");
             this.addItemDescriptionLabel.setText("");
             this.addItemStatusLabel.setText("");
-            this.addItemToListLabel.setText("There is no list do add the item to");
+            this.addItemToListLabel.setText("Select a list do add the item to");
 
         }
         else{
+            //initialize variables
+            String itemName="";
+            String itemDescription="";
+            String itemDueDate="";
+            LocalDate dueDate = LocalDate.of(2021,11,10);
+            String itemStatus="";
+            String selectedName="";
             //Create a String variable to store the item name and assign the text entered by the user to it
-            String itemName=itemNameTxtField.getText();
+            itemName=itemNameTxtField.getText();
             //print the label
             this.addItemTitleLabel.setText(itemNameTxtField.getText() + " title set");
             //Create a String variable to store the item name and assign the text entered by the user to it
-            String itemDescription=descriptionTxtField.getText();
+            itemDescription=descriptionTxtField.getText();
             //print the label
             this.addItemDescriptionLabel.setText(descriptionTxtField.getText() + " description set");
-            //Create a String to store the due date of the item
-            String itemDueDate= (dp.getValue().toString());
-            //print the label
-            this.addItemDueDateLabel.setText(itemDueDate + " due date set");
-            //format the dueDate
-            LocalDate dueDate = LocalDate.parse(itemDueDate, formatter);
+            if(dp.getValue().toString()!=null){
+                //Create a String to store the due date of the item
+                itemDueDate= (dp.getValue().toString());
+                //print the label
+                this.addItemDueDateLabel.setText(itemDueDate + " due date set");
+                //format the dueDate
+                dueDate = LocalDate.parse(itemDueDate, formatter);
+            }
+            else{
+                dueDate = LocalDate.of(2021,11,10);
+                //print the label
+                this.addItemDueDateLabel.setText("2021-11-10 default due date set");;
+            }
             //Create a String to store the status of the item
-            String itemStatus= (addItemStatus.getValue().toString());
+            itemStatus= (addItemStatus.getValue().toString());
             this.addItemStatusLabel.setText(itemStatus + " status set");
             //create Item by calling the method of the Item class
             item.setName(itemName);
@@ -123,14 +137,14 @@ public class homepageController implements Initializable{
             if(selected==null){
                 //no selection was made
                 //do not add the item
-                this.addItemTitleLabel.setText("There is no list to add the item to");
+                this.addItemTitleLabel.setText("Select a list do add the item to");
             }
             else{
                 //selection was made
                 //add the item to the selected TodoList
                 selected.addItem(item);
                 //get the name of the list
-                String selectedName = selected.getName();
+                selectedName = selected.getName();
                 //print label
                 this.addItemToListLabel.setText("Item added to list " + selectedName);
             }
@@ -211,6 +225,8 @@ public class homepageController implements Initializable{
 
         //load data to 'Item' table
         tableViewItem.setItems(obsListItem);
+
+        dp.setValue(LocalDate.of(2021,11,10));
 
         //Update the table to allow the user to edit Item information
         tableViewItem.setEditable(true);

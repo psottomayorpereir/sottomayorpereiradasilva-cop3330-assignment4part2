@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class App extends Application {
 
     public static void main(String[] args) {
         //launch application
@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //set homepage scene
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/ucf.assignments/homepage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/ucf.assignments/homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Todo List App");
         stage.setScene(scene);
