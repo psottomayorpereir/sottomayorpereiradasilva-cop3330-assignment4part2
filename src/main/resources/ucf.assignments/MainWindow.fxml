@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainBorderPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem onAction="#showNewItemDialog" text="New..." />
+                        <SeparatorMenuItem />
+                        <MenuItem onAction="#handleExit" text="Exit" />
+                    </items>
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <HBox>
+                    <Button onAction="#showNewItemDialog" prefHeight="31.0" prefWidth="89.0">
+                        <tooltip>
+                            <Tooltip text="Add a New Todo Item" />
+                        </tooltip>
+                        <text>Add Item</text>
+                    </Button>
+                    <Label />
+                    <ToggleButton fx:id="filterTodayToggleButton" onAction="#handleTodayFilterButton" prefHeight="31.0" prefWidth="89.0" text="Today's Items">
+                        <tooltip>
+                            <Tooltip text="Button Down: Show Today's items only. Button Up: Show all items" />
+                        </tooltip>
+                        <HBox.margin>
+                            <Insets />
+                        </HBox.margin>
+                    </ToggleButton>
+                </HBox>
+            <ToggleButton fx:id="filterCompletedToggleButton" onAction="#handleCompletedFilterButton" prefHeight="31.0" prefWidth="107.0" text="Completed Items">
+               <tooltip>
+                  <Tooltip text="Button Down: Show Today's items only. Button Up: Show all items" />
+               </tooltip>
+            </ToggleButton>
+            <ToggleButton fx:id="filterIncompleteToggleButton" onAction="#handleIncompleteFilterButton" prefHeight="31.0" prefWidth="117.0" text="Incomplete Items">
+               <tooltip>
+                  <Tooltip text="Button Down: Show Today's items only. Button Up: Show all items" />
+               </tooltip>
+            </ToggleButton>
+            <Button mnemonicParsing="false" onAction="#setCompleteStatus" prefHeight="31.0" prefWidth="137.0" text="Set Item as Completed" />
+            <Button mnemonicParsing="false" onAction="#setIncompleteStatus" prefHeight="31.0" prefWidth="142.0" text="Set Item as Incomplete" />
+            <Button mnemonicParsing="false" onAction="#clearAllItems" prefHeight="31.0" prefWidth="97.0" text="Clear All Items" />
+            </ToolBar>
+        </VBox>
+    </top>
+    <left>
+        <ListView fx:id="todoListView" onKeyPressed="#handleKeyPressed">
+
+        </ListView>
+    </left>
+    <center>
+        <VBox style="-fx-background-color: white">
+            <HBox>
+                <Label prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: white" text="Item Due Date: ">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+            </HBox>
+             <Label fx:id="deadlineLabel" prefHeight="31.0" prefWidth="322.0" style="-fx-background-color: white">
+                 <font>
+                     <Font name="Times New Roman" size="17.0" />
+                 </font>
+             </Label>
+         <Label text="Item Status:">
+            <font>
+               <Font name="System Bold" size="17.0" />
+            </font>
+         </Label>
+         <Label fx:id="statusLabel" prefHeight="31.0" prefWidth="322.0" style="-fx-background-color: white">
+            <font>
+               <Font name="Times New Roman" size="17.0" />
+            </font>
+         </Label>
+            <TextArea fx:id="itemDescriptionTextArea" prefHeight="473.0" prefWidth="552.0" wrapText="true" VBox.vgrow="ALWAYS" />
+         <HBox prefHeight="33.0" prefWidth="478.0" />
+        </VBox>
+    </center>
+</BorderPane>
