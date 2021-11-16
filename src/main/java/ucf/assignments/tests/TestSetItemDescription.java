@@ -12,11 +12,11 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestSetItemInformation {
+class TestSetItemDescription {
     @Test
-    public void addTitleToItem(){
-        //Test setting the title of an item
+    public void addDescriptionToItem(){
+        //Test setting the description of an item
         TodoItem obj = new TodoItem("title", "Complete", "description", LocalDate.of(2021,11,15));
-        assertEquals("title",obj.getTitle());
+        assertEquals("description",obj.getDescription());
     }
 }
